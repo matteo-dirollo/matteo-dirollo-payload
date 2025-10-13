@@ -1,37 +1,47 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import { analyticsEvent } from '@/utilities/analytics'
+import { usePrivacy } from '@/utilities/privacy'
+import { usePathname } from 'next/navigation'
 import Script from 'next/script'
-import { usePathname, useSearchParams } from 'next/navigation'
+import * as React from 'react'
 
-const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+const gaMeasurementID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
-export default function GoogleAnalytics(): React.ReactElement | null {
+export const GoogleAnalytics: React.FC = () => {
   const pathname = usePathname()
-  const searchParams = useSearchParams()
 
-  useEffect(() => {
-    if (!measurementId) return
-    const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '')
-    if (typeof (window as any).gtag === 'function') {
-      ;(window as any).gtag('config', measurementId, { page_path: url })
+  const { cookieConsent } = usePrivacy()
+
+  React.useEffect(() => {
+    if (!gaMeasurementID || !window?.location?.href) {
+      return
     }
-  }, [pathname, searchParams])
 
-  if (!measurementId) return null
+    analyticsEvent('page_view', {
+      page_location: window.location.href,
+      page_path: pathname,
+      page_title: document.title,
+    })
+  }, [pathname])
+
+  if (!cookieConsent || !gaMeasurementID) {
+    return null
+  }
 
   return (
-    <>
+    <React.Fragment>
+      <Script defer src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementID}`} />
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
-        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '${gaMeasurementID}', { send_page_view: false });`,
+        }}
+        defer
+        id="google-analytics"
       />
-      <Script id="gtag-init" strategy="afterInteractive">
-        {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);} 
-gtag('js', new Date());
-gtag('config', '${measurementId}', { page_path: window.location.pathname });`}
-      </Script>
-    </>
+    </React.Fragment>
   )
 }
