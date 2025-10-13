@@ -29,7 +29,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body>
         <Providers>
-          <SpeedInsights />
           <AdminBar
             adminBarProps={{
               preview: isEnabled,
@@ -38,6 +37,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
           <Header />
           {children}
+          <SpeedInsights />
           <Footer />
         </Providers>
       </body>
