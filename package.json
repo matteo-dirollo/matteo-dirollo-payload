@@ -1,7 +1,7 @@
 {
   "name": "matteo-dirollo-payload",
   "version": "1.0.0",
-  "description": "Website template for Payload",
+  "description": "Portfolio Website",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -70,6 +70,7 @@
     "@types/react-dom": "19.1.6",
     "@vitejs/plugin-react": "4.5.2",
     "autoprefixer": "^10.4.19",
+    "baseline-browser-mapping": "^2.10.33",
     "copyfiles": "^2.4.1",
     "eslint": "^9.16.0",
     "eslint-config-next": "15.4.4",

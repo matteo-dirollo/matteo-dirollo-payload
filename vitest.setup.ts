@@ -1,4 +1,4 @@
 // Any setup scripts you might need go here
 
-// Load .env files
+// Load .env.production files
 import 'dotenv/config'
