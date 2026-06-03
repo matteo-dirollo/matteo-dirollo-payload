@@ -2,7 +2,7 @@ import type { Field, GroupField } from 'payload'
 
 import deepMerge from '@/utilities/deepMerge'
 
-export type LinkAppearances = 'default' | 'outline'
+export type LinkAppearances = 'default' | 'outline' | 'callToAction'
 
 export const appearanceOptions: Record<LinkAppearances, { label: string; value: string }> = {
   default: {
@@ -13,6 +13,10 @@ export const appearanceOptions: Record<LinkAppearances, { label: string; value: 
     label: 'Outline',
     value: 'outline',
   },
+  callToAction: {
+    label: 'Button',
+    value: 'button'
+  }
 }
 
 type LinkType = (options?: {
@@ -118,20 +122,43 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
   }
 
   if (appearances !== false) {
-    let appearanceOptionsToUse = [appearanceOptions.default, appearanceOptions.outline]
+    let appearanceOptionsToUse = [appearanceOptions.default, appearanceOptions.outline, appearanceOptions.callToAction  ]
 
     if (appearances) {
       appearanceOptionsToUse = appearances.map((appearance) => appearanceOptions[appearance])
     }
 
     linkResult.fields.push({
-      name: 'appearance',
-      type: 'select',
-      admin: {
-        description: 'Choose how the link should be rendered.',
-      },
-      defaultValue: 'default',
-      options: appearanceOptionsToUse,
+      type: 'row',
+      fields: [
+        {
+          name: 'appearance',
+          type: 'select',
+          admin: {
+            width: '50%',
+            description: 'Choose how the link should be rendered.', // Restored!
+          },
+          defaultValue: 'default',
+          options: appearanceOptionsToUse,
+        },
+        // Conditional icon mapping dropdown
+        {
+          name: 'icon',
+          type: 'select',
+          admin: {
+            width: '50%',
+            condition: (_, siblingData) => siblingData?.appearance === 'button',
+          },
+          label: 'Button Icon',
+          options: [
+            { label: 'None', value: 'none' },
+            { label: 'Coffee Cup ☕', value: 'coffee' },
+            { label: 'Arrow Right ➜', value: 'arrowRight' },
+            { label: 'Heart ❤️', value: 'heart' },
+          ],
+          defaultValue: 'none',
+        },
+      ],
     })
   }
 
