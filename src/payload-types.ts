@@ -184,7 +184,8 @@ export interface Page {
             /**
              * Choose how the link should be rendered.
              */
-            appearance?: ('default' | 'outline') | null;
+            appearance?: ('default' | 'outline' | 'button') | null;
+            icon?: ('none' | 'coffee' | 'arrowRight' | 'heart') | null;
           };
           id?: string | null;
         }[]
@@ -442,6 +443,7 @@ export interface CallToActionBlock {
            * Choose how the link should be rendered.
            */
           appearance?: ('default' | 'outline') | null;
+          icon?: ('none' | 'coffee' | 'arrowRight' | 'heart') | null;
         };
         id?: string | null;
       }[]
@@ -491,7 +493,8 @@ export interface ContentBlock {
           /**
            * Choose how the link should be rendered.
            */
-          appearance?: ('default' | 'outline') | null;
+          appearance?: ('default' | 'outline' | 'button') | null;
+          icon?: ('none' | 'coffee' | 'arrowRight' | 'heart') | null;
         };
         id?: string | null;
       }[]
@@ -1022,6 +1025,7 @@ export interface PagesSelect<T extends boolean = true> {
                     url?: T;
                     label?: T;
                     appearance?: T;
+                    icon?: T;
                   };
               id?: T;
             };
@@ -1068,6 +1072,7 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
               url?: T;
               label?: T;
               appearance?: T;
+              icon?: T;
             };
         id?: T;
       };
@@ -1094,6 +1099,7 @@ export interface ContentBlockSelect<T extends boolean = true> {
               url?: T;
               label?: T;
               appearance?: T;
+              icon?: T;
             };
         id?: T;
       };
@@ -1608,6 +1614,11 @@ export interface Footer {
               } | null);
           url?: string | null;
           label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline' | 'button') | null;
+          icon?: ('none' | 'coffee' | 'arrowRight' | 'heart') | null;
         };
         id?: string | null;
       }[]
@@ -1654,6 +1665,8 @@ export interface FooterSelect<T extends boolean = true> {
               reference?: T;
               url?: T;
               label?: T;
+              appearance?: T;
+              icon?: T;
             };
         id?: T;
       };

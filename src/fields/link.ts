@@ -122,10 +122,20 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
   }
 
   if (appearances !== false) {
-    let appearanceOptionsToUse = [appearanceOptions.default, appearanceOptions.outline, appearanceOptions.callToAction  ]
+    let appearanceOptionsToUse = [
+      appearanceOptions.default,
+      appearanceOptions.outline,
+      appearanceOptions.callToAction
+    ]
 
     if (appearances) {
-      appearanceOptionsToUse = appearances.map((appearance) => appearanceOptions[appearance])
+      // SAFE CHECK: Ensure 'appearances' is actually an array before mapping
+      if (Array.isArray(appearances)) {
+        appearanceOptionsToUse = appearances.map((appearance) => appearanceOptions[appearance])
+      } else if (typeof appearances === 'string' && appearanceOptions[appearances]) {
+        // Fallback: If a single string was passed accidentally, handle it cleanly
+        appearanceOptionsToUse = [appearanceOptions[appearances]]
+      }
     }
 
     linkResult.fields.push({
