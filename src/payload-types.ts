@@ -185,7 +185,7 @@ export interface Page {
              * Choose how the link should be rendered.
              */
             appearance?: ('default' | 'outline' | 'button') | null;
-            icon?: ('none' | 'coffee' | 'arrowRight' | 'heart') | null;
+            icon?: ('none' | 'coffee' | 'icecream' | 'heart') | null;
             buttonColor?: ('blue' | 'coffeeBrand' | 'green' | 'dark') | null;
           };
           id?: string | null;
@@ -444,7 +444,7 @@ export interface CallToActionBlock {
            * Choose how the link should be rendered.
            */
           appearance?: ('default' | 'outline') | null;
-          icon?: ('none' | 'coffee' | 'arrowRight' | 'heart') | null;
+          icon?: ('none' | 'coffee' | 'icecream' | 'heart') | null;
           buttonColor?: ('blue' | 'coffeeBrand' | 'green' | 'dark') | null;
         };
         id?: string | null;
@@ -496,7 +496,7 @@ export interface ContentBlock {
            * Choose how the link should be rendered.
            */
           appearance?: ('default' | 'outline' | 'button') | null;
-          icon?: ('none' | 'coffee' | 'arrowRight' | 'heart') | null;
+          icon?: ('none' | 'coffee' | 'icecream' | 'heart') | null;
           buttonColor?: ('blue' | 'coffeeBrand' | 'green' | 'dark') | null;
         };
         id?: string | null;
@@ -1624,7 +1624,7 @@ export interface Footer {
            * Choose how the link should be rendered.
            */
           appearance?: ('default' | 'outline' | 'button') | null;
-          icon?: ('none' | 'coffee' | 'arrowRight' | 'heart') | null;
+          icon?: ('none' | 'coffee' | 'icecream' | 'heart') | null;
           buttonColor?: ('blue' | 'coffeeBrand' | 'green' | 'dark') | null;
         };
         id?: string | null;

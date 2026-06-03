@@ -13,9 +13,7 @@ export const Footer: GlobalConfig = {
       name: 'navItems',
       type: 'array',
       fields: [
-        link({
-          appearances: true,
-        }),
+        link(),
       ],
       maxRows: 6,
       admin: {
