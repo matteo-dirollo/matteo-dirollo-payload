@@ -11,22 +11,46 @@ const toPattern = (urlString) => {
   }
 }
 
-const remotePatterns = [
-  toPattern(process.env.NEXT_PUBLIC_SERVER_URL),
-  toPattern(
-    process.env.VERCEL_PROJECT_PRODUCTION_URL?.startsWith('http')
-      ? process.env.VERCEL_PROJECT_PRODUCTION_URL
-      : process.env.VERCEL_PROJECT_PRODUCTION_URL
-        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-        : null
-  ),
-  toPattern('http://localhost:3000'),
-].filter(Boolean)
+// Collect all URLs that may serve images
+// const imageHostURLs = [
+//   process.env.NEXT_PUBLIC_SERVER_URL,
+//   process.env.VERCEL_PROJECT_PRODUCTION_URL
+//     ? `https://${process.env.NEXT_PUBLIC_SERVER_URL}`
+//     : `https://process.env.VERCEL_PROJECT_PRODUCTION_URL`,
+// ].filter(Boolean)
+//
+// // Deduplicate by hostname
+// const remotePatterns = Array.from(
+//   new Map(
+//     imageHostURLs.map((item) => {
+//       const url = new URL(item)
+//       return [url.hostname, { hostname: url.hostname, protocol: url.protocol.replace(':', '') }]
+//     })
+//   ).values()
+// )
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns,
+remotePatterns: [
+  {
+    protocol: 'https',
+    hostname: 'matteo-dirollo.com',
+  },
+  {
+    protocol: 'https',
+    hostname: 'dev.matteo-dirollo.com',
+  },
+  {
+    protocol: 'https',
+    hostname: '*.public.blob.vercel-storage.com',
+  },
+  {
+    protocol: 'http',
+    hostname: 'localhost',
+    port: '3000',
+  },
+],
   },
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
