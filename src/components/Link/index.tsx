@@ -6,11 +6,11 @@ import React from 'react'
 import type { Page, Post } from '@/payload-types'
 
 // Helper to render the custom emoji icons
-const LinkIcon = ({ name }: { name?: 'none' | 'coffee' | 'arrowRight' | 'heart' | null }) => {
+const LinkIcon = ({ name }: { name?: 'none' | 'coffee' | 'icecream' | 'heart' | null }) => {
   switch (name) {
     case 'coffee':
       return <span className="mr-2">☕</span>
-    case 'arrowRight':
+    case 'icecream':
       return <span className="ml-2">➜</span>
     case 'heart':
       return <span className="mr-2">❤️</span>
@@ -47,7 +47,7 @@ type CMSLinkType = {
   size?: ButtonProps['size'] | null
   type?: 'custom' | 'reference' | null
   url?: string | null
-  icon?: 'none' | 'coffee' | 'arrowRight' | 'heart' | null
+  icon?: 'none' | 'coffee' | 'icecream' | 'heart' | null
   buttonColor?: 'blue' | 'coffeeBrand' | 'green' | 'dark' | null
 }
 
@@ -97,10 +97,10 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
         className={cn(getColorClass(buttonColor), className)}
       >
         <Link href={href || url || ''} {...newTabProps}>
-          {icon !== 'arrowRight' && <LinkIcon name={icon} />}
+          {icon !== 'icecream' && <LinkIcon name={icon} />}
           {label && <span>{label}</span>}
           {children && children}
-          {icon === 'arrowRight' && <LinkIcon name={icon} />}
+          {icon === 'icecream' && <LinkIcon name={icon} />}
         </Link>
       </Button>
     )
