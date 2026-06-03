@@ -163,7 +163,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
           options: [
             { label: 'None', value: 'none' },
             { label: 'Coffee Cup ☕', value: 'coffee' },
-            { label: 'Arrow Right ➜', value: 'arrowRight' },
+            { label: 'Icecream 🍦', value: 'icecream' },
             { label: 'Heart ❤️', value: 'heart' },
           ],
           defaultValue: 'none',
