@@ -1,27 +1,27 @@
 import { withPayload } from '@payloadcms/next/withPayload'
 import redirects from './redirects.js'
 
-// const NEXT_PUBLIC_SERVER_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
-//  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-//  : undefined || process.env.__NEXT_PRIVATE_ORIGIN || 'http://localhost:3000'
+const toPattern = (urlString) => {
+  if (!urlString) return null
+  try {
+    const url = new URL(urlString)
+    return { hostname: url.hostname, protocol: url.protocol.replace(':', '') }
+  } catch {
+    return null
+  }
+}
 
-// Collect all URLs that may serve images
-const imageHostURLs = [
-  process.env.NEXT_PUBLIC_SERVER_URL,
-  process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.NEXT_PUBLIC_SERVER_URL}`
-    : `https://process.env.VERCEL_PROJECT_PRODUCTION_URL`,
+const remotePatterns = [
+  toPattern(process.env.NEXT_PUBLIC_SERVER_URL),
+  toPattern(
+    process.env.VERCEL_PROJECT_PRODUCTION_URL?.startsWith('http')
+      ? process.env.VERCEL_PROJECT_PRODUCTION_URL
+      : process.env.VERCEL_PROJECT_PRODUCTION_URL
+        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+        : null
+  ),
+  toPattern('http://localhost:3000'),
 ].filter(Boolean)
-
-// Deduplicate by hostname
-const remotePatterns = Array.from(
-  new Map(
-    imageHostURLs.map((item) => {
-      const url = new URL(item)
-      return [url.hostname, { hostname: url.hostname, protocol: url.protocol.replace(':', '') }]
-    })
-  ).values()
-)
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
