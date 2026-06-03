@@ -186,6 +186,7 @@ export interface Page {
              */
             appearance?: ('default' | 'outline' | 'button') | null;
             icon?: ('none' | 'coffee' | 'arrowRight' | 'heart') | null;
+            buttonColor?: ('blue' | 'coffeeBrand' | 'green' | 'dark') | null;
           };
           id?: string | null;
         }[]
@@ -444,6 +445,7 @@ export interface CallToActionBlock {
            */
           appearance?: ('default' | 'outline') | null;
           icon?: ('none' | 'coffee' | 'arrowRight' | 'heart') | null;
+          buttonColor?: ('blue' | 'coffeeBrand' | 'green' | 'dark') | null;
         };
         id?: string | null;
       }[]
@@ -495,6 +497,7 @@ export interface ContentBlock {
            */
           appearance?: ('default' | 'outline' | 'button') | null;
           icon?: ('none' | 'coffee' | 'arrowRight' | 'heart') | null;
+          buttonColor?: ('blue' | 'coffeeBrand' | 'green' | 'dark') | null;
         };
         id?: string | null;
       }[]
@@ -1026,6 +1029,7 @@ export interface PagesSelect<T extends boolean = true> {
                     label?: T;
                     appearance?: T;
                     icon?: T;
+                    buttonColor?: T;
                   };
               id?: T;
             };
@@ -1073,6 +1077,7 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
               label?: T;
               appearance?: T;
               icon?: T;
+              buttonColor?: T;
             };
         id?: T;
       };
@@ -1100,6 +1105,7 @@ export interface ContentBlockSelect<T extends boolean = true> {
               label?: T;
               appearance?: T;
               icon?: T;
+              buttonColor?: T;
             };
         id?: T;
       };
@@ -1619,6 +1625,7 @@ export interface Footer {
            */
           appearance?: ('default' | 'outline' | 'button') | null;
           icon?: ('none' | 'coffee' | 'arrowRight' | 'heart') | null;
+          buttonColor?: ('blue' | 'coffeeBrand' | 'green' | 'dark') | null;
         };
         id?: string | null;
       }[]
@@ -1667,6 +1674,7 @@ export interface FooterSelect<T extends boolean = true> {
               label?: T;
               appearance?: T;
               icon?: T;
+              buttonColor?: T;
             };
         id?: T;
       };
