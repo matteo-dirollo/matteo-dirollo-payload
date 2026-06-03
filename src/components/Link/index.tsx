@@ -11,7 +11,7 @@ const LinkIcon = ({ name }: { name?: 'none' | 'coffee' | 'icecream' | 'heart' | 
     case 'coffee':
       return <span className="mr-2">☕</span>
     case 'icecream':
-      return <span className="ml-2">➜</span>
+      return <span className="ml-2">🍦</span>
     case 'heart':
       return <span className="mr-2">❤️</span>
     default:
@@ -69,8 +69,8 @@ export const CMSLink: React.FC<CMSLinkType> = (props) => {
   const href =
     type === 'reference' && typeof reference?.value === 'object' && reference.value.slug
       ? `${reference?.relationTo !== 'pages' ? `/${reference?.relationTo}` : ''}/${
-          reference.value.slug
-        }`
+        reference.value.slug
+      }`
       : url
 
   if (!href) return null
