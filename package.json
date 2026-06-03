@@ -97,6 +97,9 @@
     "ignoredBuiltDependencies": [
       "bufferutil",
       "utf-8-validate"
+    ],
+    "allowedLifecycleScripts": [
+      "@vercel/speed-insights"
     ]
   }
 }
