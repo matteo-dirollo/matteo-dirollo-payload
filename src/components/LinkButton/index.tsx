@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const BuyMeButton = () => {
+export const LinkButton = () => {
   return (
     <a
       href="https://www.buymeacoffee.com/matteodiro3"
@@ -13,6 +13,5 @@ export const BuyMeButton = () => {
         className="w-full"
       />
     </a>
-
   )
 }

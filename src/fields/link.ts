@@ -156,7 +156,7 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
           name: 'icon',
           type: 'select',
           admin: {
-            width: '50%',
+            width: '33%',
             condition: (_, siblingData) => siblingData?.appearance === 'button',
           },
           label: 'Button Icon',
@@ -167,6 +167,22 @@ export const link: LinkType = ({ appearances, disableLabel = false, overrides = 
             { label: 'Heart ❤️', value: 'heart' },
           ],
           defaultValue: 'none',
+        },
+        {
+          name: 'buttonColor',
+          type: 'select',
+          admin: {
+            width: '33%', // Adjusted to 33%
+            condition: (_, siblingData) => siblingData?.appearance === 'button',
+          },
+          label: 'Button Color',
+          options: [
+            { label: 'Blue (Primary)', value: 'blue' },
+            { label: 'Coffee Brand (#5F7FFF)', value: 'coffeeBrand' },
+            { label: 'Green (Success)', value: 'green' },
+            { label: 'Dark Charcoal', value: 'dark' },
+          ],
+          defaultValue: 'blue',
         },
       ],
     })
